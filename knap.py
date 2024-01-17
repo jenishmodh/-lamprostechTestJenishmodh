@@ -1,24 +1,17 @@
-def knapsack(weights, values, weight_limit):
-    n = len(weights)
-    dp = [[0] * (weight_limit + 1) for _ in range(n + 1)]
-    for i in range(1, n + 1):
-        for w in range(weight_limit + 1):
-            # If the current item can fit in the knapsack
-            if weights[i - 1] <= w:
-                # Choose the maximum value between including and excluding the current item
-                dp[i][w] = max(dp[i - 1][w], values[i - 1] + dp[i - 1][w - weights[i - 1]])
-            else:
-                # If the current item cannot fit, exclude it
-                dp[i][w] = dp[i - 1][w]
+weights = [3, 1, 4]
+values = [4, 4, 1]
+capacity = 5
 
-    # The result is stored in the bottom-right cell of the table
-    return dp[n][weight_limit]
+n = len(weights)
+table = [[0 for x in range(capacity + 1)] for x in range(n + 1)]
 
-# Take user input for weights, values, and weight limit
-weights = list(map(int, input("Enter the weights separated by space: ").split()))
-values = list(map(int, input("Enter the values separated by space: ").split()))
-weight_limit = int(input("Enter the weight limit: "))
+for i in range(1, n + 1):
+    for j in range(1, capacity + 1):
+        if weights[i - 1] <= j:
+            table[i][j] = max(
+                values[i - 1] + table[i - 1][j - weights[i - 1]], table[i - 1][j]
+            )
+        else:
+            table[i][j] = table[i - 1][j]
 
-# Calculate and print the result
-result = knapsack(weights, values, weight_limit)
-print("Maximum value achievable:", result)
+print(table[n][capacity])
