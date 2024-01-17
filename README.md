@@ -1,1 +1,1 @@
-![knapsack_solution]([image link](https://github.com/jenishmodh/-lamprostechTestJenishmodh/blob/main/Knapsack%20Problem_solution.png)https://github.com/jenishmodh/-lamprostechTestJenishmodh/blob/main/Knapsack%20Problem_solution.png)
+
